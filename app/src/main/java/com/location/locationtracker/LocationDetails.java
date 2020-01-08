@@ -3,6 +3,7 @@ package com.location.locationtracker;
 import java.util.Date;
 
 public class LocationDetails {
+    private String name;
     private Date year;
     private Date month;
     private Date date;
@@ -12,6 +13,14 @@ public class LocationDetails {
   private double Longitude;
   private double Latitude;
   private Date datetime;
+
+
+    public LocationDetails(String name, double longitude, double latitude, Date datetime) {
+        this.name = name;
+        Longitude = longitude;
+        Latitude = latitude;
+        this.datetime = datetime;
+    }
 
     public LocationDetails(Date year, Date month, Date date, Date hour, Date minute, Date second, double longitude, double latitude) {
         this.year = year;
@@ -107,5 +116,13 @@ public class LocationDetails {
 
     public void setLatitude(double latitude) {
         Latitude = latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

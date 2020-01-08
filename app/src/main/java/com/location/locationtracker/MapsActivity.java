@@ -15,8 +15,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -228,32 +230,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //get date and time
          final Date datetimeNow = new Date(location.getTime());
 
-         final LocationDetails details = new LocationDetails(
+         final LocationDetails details = new LocationDetails(" ",
                 location.getLongitude(),
                 location.getLatitude(),
                 datetimeNow
         );
 
+        /*FirebaseDatabase.getInstance().getReference("Current Location-"+datetimeNow)
+                .setValue(details).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT);
 
 
-        final Button button = findViewById(R.id.savelocation);
-        button.setOnClickListener(new View.OnClickListener() {
+                }
+                else {
+                    Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT);
+                }
+            }
+        });*/
+
+        final Button[] button = {findViewById(R.id.savelocation)};
+        button[0].setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                FirebaseDatabase.getInstance().getReference("Current Location-"+datetimeNow)
-                        .setValue(details).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                // Set up the input
+                final EditText input = new EditText(builder.getContext());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT );
+                builder.setView(input);
+                final String[] m_Text = {""};
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT);
+                    public void onClick(DialogInterface dialog, int which) {
+                        m_Text[0] = input.getText().toString();
+                        details.setName(m_Text[0]);
+                        FirebaseDatabase.getInstance().getReference().child("Saved Locations").child(details.getName())
+                                .setValue(details).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT);
 
 
-                        }
-                        else {
-                            Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT);
-                        }
+                                }
+                                else {
+                                    Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT);
+                                }
+                            }
+                        });
                     }
                 });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+
+
             }
         });
 
