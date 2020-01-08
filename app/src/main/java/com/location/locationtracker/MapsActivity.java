@@ -15,6 +15,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -30,6 +32,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -223,8 +226,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
 
         //get date and time
-        Date datetimeNow = new Date(location.getTime());
+         final Date datetimeNow = new Date(location.getTime());
 
+         final LocationDetails details = new LocationDetails(
+                location.getLongitude(),
+                location.getLatitude(),
+                datetimeNow
+        );
+
+
+
+        final Button button = findViewById(R.id.savelocation);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                FirebaseDatabase.getInstance().getReference("Current Location-"+datetimeNow)
+                        .setValue(details).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT);
+
+
+                        }
+                        else {
+                            Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
+            }
+        });
 
 
         latLng = new LatLng(location.getLatitude(),location.getLongitude());
