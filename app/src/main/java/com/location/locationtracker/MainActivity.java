@@ -16,4 +16,8 @@ public class MainActivity extends AppCompatActivity {
     public void btnCurrentLocation(View view){
         startActivity(new Intent(this,MapsActivity.class));
     }
+
+    public void btnpreviousLocation(View view){
+        startActivity(new Intent(getApplicationContext(),Main2Activity.class));
+    }
 }

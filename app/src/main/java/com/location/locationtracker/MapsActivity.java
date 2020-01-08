@@ -274,12 +274,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT);
+                                    Toast.makeText(MapsActivity.this,"Location Saved",Toast.LENGTH_SHORT).show();
 
 
                                 }
                                 else {
-                                    Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT);
+                                    Toast.makeText(MapsActivity.this,"Location Not Saved", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

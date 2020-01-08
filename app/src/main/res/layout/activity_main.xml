@@ -18,5 +18,15 @@
         android:backgroundTint="@color/colorPrimaryDark"
         >
     </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:id="@+id/button2"
+        android:text="Retrieve Location"
+        android:layout_above="@id/button1"
+        android:onClick="btnpreviousLocation"
+        android:backgroundTint="@color/colorPrimaryDark"
+        >
+    </Button>
 
 </RelativeLayout>
