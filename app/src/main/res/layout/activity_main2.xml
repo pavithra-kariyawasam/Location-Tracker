@@ -15,9 +15,10 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="510dp"
+            android:layout_height="490dp"
             android:id="@+id/list"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="#99ff99"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,15 +26,21 @@
         android:orientation="vertical">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:id="@+id/viewmap"
-            android:text="View Location On Map">
+            android:text="View Location On Map"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textColor="#ffffff">
         </Button>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:id="@+id/delete"
-            android:text="Delete">
+            android:text="Delete Location"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textColor="#ffffff">
         </Button>
     </LinearLayout>
 

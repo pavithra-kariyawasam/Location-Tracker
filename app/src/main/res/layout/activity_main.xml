@@ -16,6 +16,8 @@
         android:layout_alignParentBottom="true"
         android:onClick="btnCurrentLocation"
         android:backgroundTint="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
         >
     </Button>
     <Button
@@ -26,6 +28,8 @@
         android:layout_above="@id/button1"
         android:onClick="btnpreviousLocation"
         android:backgroundTint="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
         >
     </Button>
 

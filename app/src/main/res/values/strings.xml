@@ -2,4 +2,5 @@
     <string name="app_name">Track Me</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">AIzaSyCoMsz-NIjVHX6Rqs5tb0Qv0mjfAEB9gp4</string>
+    <string name="title_activity_maps_activityspecific_location">Map</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.location.locationtracker;
 
+import android.content.Intent;
+
 import java.util.Date;
 
 public class LocationDetails {
@@ -39,7 +41,7 @@ public class LocationDetails {
         this.datetime = datetime;
     }
 */
-    public double getLongitude() {
+    public Double getLongitude() {
         return Longitude;
     }
 
@@ -47,7 +49,7 @@ public class LocationDetails {
         Longitude = longitude;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return Latitude;
     }
 

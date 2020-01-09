@@ -142,10 +142,15 @@ public class Main2Activity extends AppCompatActivity {
 final LocationDetails locationDetails = new LocationDetails();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                String temp = arrayList.get(position).substring(10,arrayList.get(position).indexOf('('));
+                String arr=arrayList.get(position);
+                String latitude = arr.substring((arr.indexOf('('))+1,arr.indexOf(','));
+                String longitude = arr.substring(arr.indexOf(',')+1,arr.indexOf(')'));
+                String temp = arr.substring(10,arr.indexOf('('));
                 locationDetails.setName(temp.trim());
+                locationDetails.setLatitude(Double.parseDouble(latitude.trim()));
+                locationDetails.setLongitude(Double.parseDouble(longitude.trim()));
 
-                Log.d(TAG,"click"+temp.trim());
+                Log.d(TAG,"click"+temp+" "+latitude+" "+longitude);
             }
         });
 
@@ -178,7 +183,9 @@ final LocationDetails locationDetails = new LocationDetails();
                 }
             }
         });
-
+        final Intent intent = new Intent(this,MapsActivityspecificLocation.class);
+       // intent.putExtras("lat",locationDetails.getLatitude());
+       // intent.putExtras("lon",locationDetails.getLongitude());
         btnmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +197,8 @@ final LocationDetails locationDetails = new LocationDetails();
                     Toast.makeText(Main2Activity.this,"Please select Location",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                   // Double la =
+
+                    startActivity(intent);
 
                 }
             }

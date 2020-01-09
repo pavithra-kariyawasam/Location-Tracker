@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.location.locationtracker">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -15,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -26,8 +27,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCoMsz-NIjVHX6Rqs5tb0Qv0mjfAEB9gp4" />
+            android:value="AIzaSyBi8BjYivDQFXYr3EvnSmWqphC8SKA-fKo" />
 
+        <activity
+            android:name=".MapsActivityspecificLocation"
+            android:label="@string/title_activity_maps_activityspecific_location"></activity>
+        <activity android:name=".Main2Activity" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />

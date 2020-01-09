@@ -18,5 +18,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/savelocation"
         android:layout_alignParentBottom="true"
-        android:text="Save My Location"></Button>
+        android:text="Save My Location"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textColor="#ffffff"></Button>
 </RelativeLayout>
